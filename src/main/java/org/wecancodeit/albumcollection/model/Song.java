@@ -31,11 +31,8 @@ public class Song {
 	
 	public Song() {}
 	
-	public Song(int rating, Collection<Comment> comments, Collection<Tag> tags, String title, String duration,
-			Album album) {
+	public Song(int rating, String title, String duration, Album album) {
 		this.rating = rating;
-		this.comments = comments;
-		this.tags = tags;
 		this.title = title;
 		this.duration = duration;
 		this.album = album;

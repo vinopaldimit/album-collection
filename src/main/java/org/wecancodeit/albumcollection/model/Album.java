@@ -35,15 +35,12 @@ public class Album {
 	
 	public Album() {}
 	
-	public Album(int rating, Collection<Comment> comments, Collection<Tag> tags, String title, String imageUrl,
-			Collection<Song> songs, String recordLabel) {
+	public Album(int rating, String title, String imageUrl, String recordLabel, Artist artist) {
 		this.rating = rating;
-		this.comments = comments;
-		this.tags = tags;
 		this.title = title;
 		this.imageUrl = imageUrl;
-		this.songs = songs;
 		this.recordLabel = recordLabel;
+		this.artist = artist;
 	}
 
 	public Long getId() {

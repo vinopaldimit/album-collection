@@ -32,14 +32,10 @@ public class Artist {
 	public Artist() {}
 	
 	//this will need to be altered eventually
-	public Artist(int rating, Collection<Comment> comments, Collection<Tag> tags, String name, String imageUrl,
-			Collection<Album> albums) {
+	public Artist(int rating, String name, String imageUrl) {
 		this.rating = rating;
-		this.comments = comments;
-		this.tags = tags;
 		this.name = name;
 		this.imageUrl = imageUrl;
-		this.albums = albums;
 	}
 
 	public Long getId() {
