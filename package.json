@@ -1,0 +1,25 @@
+{
+  "name": "album-collection",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/main/resources/static/index.html",
+	"build": "parcel build src/main/resources/static/js/index.js --out-dir src/main/resources/static/dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinopaldimit/album-collection.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vinopaldimit/album-collection/issues"
+  },
+  "homepage": "https://github.com/vinopaldimit/album-collection#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.10.3"
+  }
+}
