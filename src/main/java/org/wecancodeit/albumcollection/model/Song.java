@@ -10,6 +10,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Song {
 	@Id
@@ -26,6 +28,7 @@ public class Song {
 	//unique
 	private String title;
 	private String duration;
+	@JsonIgnore
 	@ManyToOne
 	private Album album;
 	
