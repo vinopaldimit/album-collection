@@ -1,8 +1,12 @@
 package org.wecancodeit.albumcollection.controller;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.albumcollection.model.Album;
@@ -63,6 +67,44 @@ public class ApiController {
 	@GetMapping("/artists/{id}/albums/{albumId}/songs/{songId}")
 	public Song getSong(@PathVariable(value = "id") Long id, @PathVariable(value = "albumId") Long albumId, @PathVariable(value = "songId") Long songId) {
 		return songRepo.findById(songId).get();
+	}
+	
+	@PostMapping("/artists/add")
+	public Iterable<Artist> addArtist(@RequestBody String body) throws JSONException {
+		JSONObject json = new JSONObject(body);
+		String name = json.getString("name");
+		int rating = Integer.parseInt(json.getString("rating"));
+		String imageUrl = json.getString("imageUrl");
+		artistRepo.save(new Artist(rating, name, imageUrl));
+
+		return artistRepo.findAll();
+	}
+	
+	@PostMapping("/albums/add")
+	public Iterable<Album> addAlbum(@RequestBody String body) throws JSONException {
+		JSONObject json = new JSONObject(body);
+		
+		String title = json.getString("title");
+		int rating = Integer.parseInt(json.getString("rating"));
+		String recordLabel = json.getString("recordLabel");
+		String imageUrl = json.getString("imageUrl");
+		Artist artist = artistRepo.findById(Long.parseLong(json.getString("artist"))).get();
+		albumRepo.save(new Album(rating, title, imageUrl, recordLabel, artist));
+
+		return albumRepo.findAll();
+	}
+	
+	@PostMapping("/songs/add")
+	public Iterable<Song> addSong(@RequestBody String body) throws JSONException {
+		JSONObject json = new JSONObject(body);
+		
+		String title = json.getString("title");
+		int rating = Integer.parseInt(json.getString("rating"));
+		String duration = json.getString("duration");
+		Album album = albumRepo.findById(Long.parseLong(json.getString("album"))).get();
+		songRepo.save(new Song(rating, title, duration, album));
+
+		return songRepo.findAll();
 	}
 
 }

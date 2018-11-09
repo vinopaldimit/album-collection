@@ -187,7 +187,14 @@ parcelRequire = function (e, r, n, t) {
 
       return t.prototype = {
         render: function render() {
-          return "\n\t\t\t\t<main>\n\t\t\t\t\t<h2>My Subheading</h2>\n\t\t\t\t</main>\n\t\t\t";
+          return fetch("/api/artists").then(function (t) {
+            return t.json();
+          }).then(function (t) {
+            var n = document.createElement(n);
+            n.name = "artist", t.forEach(function (t) {
+              n.innerHTML += '\n\t\t\t\t\t\t<option value="'.concat(t.id, '">').concat(t.name, "</option>\n\t\t\t\t\t");
+            });
+          }), '\n\t\t\t\t<main>\n\t\t\t\t\t<article class="addArtist">\n\t\t\t\t\t\t<label>Artist Name: <input type="text" name="name" /></label>\n\t\t\t\t\t\t<label>Rating: <input type="number" name="rating" min="0" max="10"></label>\n\t\t\t\t\t\t<label>Artist Name: <input type="text" name="imageUrl" /></label>\n\t\t\t\t\t\t<button>Add Artist</button>\n\t\t\t\t\t</article>\n\t\t\t\t\t\n\t\t\t\t\t<article class="addAlbum">\n\t\t\t\t\t\t<label>Album Title: <input type="text" name="title" /></label>\n\t\t\t\t\t\t<label>Rating: <input type="number" name="rating" min="0" max="10"></label>\n\t\t\t\t\t\t<label>Record Label: <input type="text" name="recordLabel"></label>\n\t\t\t\t\t\t<label>Artist: \n\t\t\t\t\t\t\t'.concat(this.select, '\n\t\t\t\t\t\t</label>\n\t\t\t\t\t\t<button>Add Album</button>\n\t\t\t\t\t</article>\n\t\t\t\t\t\n\t\t\t\t\t<article class="addSong">\n\t\t\t\t\t\t<label>Song Title: <input type="text" name="title" /></label>\n\t\t\t\t\t\t<label>Rating: <input type="number" name="rating" min="0" max="10"></label>\n\t\t\t\t\t\t<label>Duration: <input type="text" name="duration"></label>\n\t\t\t\t\t\t<label>Album: \n\t\t\t\t\t\t\t<select name="album">\n\t\t\t\t\t\t\t  <option value="volvo">Volvo</option>\n\t\t\t\t\t\t\t</select>\n\t\t\t\t\t\t</label>\n\t\t\t\t\t\t<button>Add Song</button>\n\t\t\t\t\t</article>\n\t\t\t\t\t\n\t\t\t\t</main>\n\t\t\t');
         }
       }, t;
     }();
@@ -196,20 +203,45 @@ parcelRequire = function (e, r, n, t) {
       Main: t
     };
   }, {}],
+  "XnMq": [function (require, module, exports) {
+    var t = function () {
+      function t(t) {
+        this.id = t;
+      }
+
+      return t.prototype = {
+        render: function render() {
+          fetch("localhost:8080/api/artists/".concat(this.id)).then(function (t) {
+            return t.json();
+          }).then(function (t) {
+            return "\n\t\t\t\t\t<article>\n\t\t\t\t\t\t<h2>".concat(t.name, "</h2>\n\t\t\t\t\t</article>\n\t\t\t\t\t");
+          });
+        }
+      }, t;
+    }();
+
+    module.exports = {
+      ArtistPage: t
+    };
+  }, {}],
   "Focm": [function (require, module, exports) {
     var e = document.querySelector("#app"),
         r = require("./appWrapper"),
-        p = r.AppWrapper,
-        a = require("./main"),
-        n = a.Main,
-        i = new n(),
-        u = require("./helpers"),
-        d = u.makeElement;
+        n = r.AppWrapper,
+        p = require("./main"),
+        a = p.Main,
+        i = require("./artistPage"),
+        t = i.ArtistPage,
+        u = new a(),
+        d = new t(1),
+        q = require("./helpers"),
+        l = q.makeElement;
 
-    p.innerHTML += i.render(), e.appendChild(p);
+    n.innerHTML += u.render(), n.innerHTML += d.render(), e.appendChild(n);
   }, {
     "./appWrapper": "lD1s",
     "./main": "epB2",
+    "./artistPage": "XnMq",
     "./helpers": "lTk1"
   }]
 }, {}, ["Focm"], null);
@@ -240,7 +272,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57306" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52362" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

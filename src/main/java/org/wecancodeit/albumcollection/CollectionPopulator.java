@@ -29,13 +29,13 @@ public class CollectionPopulator implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		createArtistList(new Artist[] { new Artist(10, "Against Me!", "againstMe.png") })
+		createArtistList(new Artist[] { new Artist(10, "Against Me!", "../images/againstMe.png") })
 				.forEach(this::saveArtistToRepo);
 
 		createAlbumList(new Album[] {
-				new Album(9, "Searching For A Former Clarity", "searchingForAFormerClarity.jpg", "Fat Wreck Chords",
+				new Album(9, "Searching For A Former Clarity", "../images/searchingForAFormerClarity.jpg", "Fat Wreck Chords",
 						artistRepo.findByNameIgnoreCase("Against Me!")),
-				new Album(10, "White Crosses", "whiteCrosses.jpg", "Sire",
+				new Album(10, "White Crosses", "../images/whiteCrosses.jpg", "Sire",
 						artistRepo.findByNameIgnoreCase("Against Me!")) }).forEach(this::saveAlbumToRepo);
 
 		createSongList(new Song[] {
