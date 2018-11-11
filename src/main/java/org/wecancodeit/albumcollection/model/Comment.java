@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Comment {
 	@Id
@@ -16,10 +18,13 @@ public class Comment {
 	@Lob
 	private String comment;
 	
+	@JsonIgnore
 	@ManyToOne
 	private Artist artist;
+	@JsonIgnore
 	@ManyToOne
 	private Album album;
+	@JsonIgnore
 	@ManyToOne
 	private Song song;
 	
@@ -29,6 +34,18 @@ public class Comment {
 		this.userName = userName;
 		this.comment = comment;
 		this.artist = artist;
+	}
+	
+	public Comment(String userName, String comment, Album album) {
+		this.userName = userName;
+		this.comment = comment;
+		this.album = album;
+	}
+	
+	public Comment(String userName, String comment, Song song) {
+		this.userName = userName;
+		this.comment = comment;
+		this.song = song;
 	}
 
 	public Long getId() {

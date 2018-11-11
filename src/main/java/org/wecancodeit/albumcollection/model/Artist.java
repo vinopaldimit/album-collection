@@ -17,7 +17,7 @@ public class Artist {
 	private Long id;
 	
 	//all entities have these
-	private int rating;
+	private String rating;
 	@OneToMany(mappedBy = "artist")
 	private Collection<Comment> comments;
 	@ManyToMany
@@ -32,7 +32,7 @@ public class Artist {
 	public Artist() {}
 	
 	//this will need to be altered eventually
-	public Artist(int rating, String name, String imageUrl) {
+	public Artist(String rating, String name, String imageUrl) {
 		this.rating = rating;
 		this.name = name;
 		this.imageUrl = imageUrl;
@@ -42,7 +42,7 @@ public class Artist {
 		return id;
 	}
 
-	public int getRating() {
+	public String getRating() {
 		return rating;
 	}
 
@@ -64,6 +64,14 @@ public class Artist {
 
 	public Collection<Album> getAlbums() {
 		return albums;
+	}
+
+	public void addTag(Tag tag) {
+		tags.add(tag);
+	}
+
+	public void setRating(String rating) {
+		this.rating = rating;
 	}
 	
 }

@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+	--grid-gap: 20px;
+}
+
+img{
+	max-width: 100%;
+}
+
+.artistDisplay span{
+	display: flex;
+	flex-direction: column;
+}
+
+.addArtist, .addAlbum, .addSong{
+	display: flex;
+	flex-direction: column;
+}

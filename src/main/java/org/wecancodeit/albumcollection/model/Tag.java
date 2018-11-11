@@ -29,11 +29,8 @@ public class Tag {
 	
 	public Tag() {}
 	
-	public Tag(String tagName, Collection<Artist> artists, Collection<Album> albums, Collection<Song> songs) {
+	public Tag(String tagName) {
 		this.tagName = tagName;
-		this.artists = artists;
-		this.albums = albums;
-		this.songs = songs;
 	}
 
 	public Long getId() {

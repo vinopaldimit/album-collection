@@ -9,7 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 import org.wecancodeit.albumcollection.model.Album;
 import org.wecancodeit.albumcollection.model.Artist;
+import org.wecancodeit.albumcollection.model.Comment;
 import org.wecancodeit.albumcollection.model.Song;
+import org.wecancodeit.albumcollection.model.Tag;
 import org.wecancodeit.albumcollection.repository.AlbumRepository;
 import org.wecancodeit.albumcollection.repository.ArtistRepository;
 import org.wecancodeit.albumcollection.repository.SongRepository;
@@ -29,7 +31,7 @@ public class CollectionPopulator implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		createArtistList(new Artist[] { new Artist(10, "Against Me!", "../images/againstMe.png") })
+		createArtistList(new Artist[] { new Artist("10", "Against Me!", "../images/againstMe.png") })
 				.forEach(this::saveArtistToRepo);
 
 		createAlbumList(new Album[] {

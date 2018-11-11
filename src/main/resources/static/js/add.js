@@ -61,6 +61,7 @@ const Add = (function() {
 						.then(data => console.log)
 				})
 			}, 0)
+			
 			//addSong
 			setTimeout(()=>{
 				document.querySelector('.addSong button').addEventListener('click', () => {
@@ -82,15 +83,15 @@ const Add = (function() {
 			return `
 				<main>
 					<h2>Add To The Collection:</h2>
-					<h3>Add an artist:</h3>
 					<article class="addArtist">
+						<h3>Add an artist:</h3>
 						<label>Artist Name: <input id="artistName" type="text" name="name" /></label>
 						<label>Rating: <input id="artistRating" type="number" name="rating" min="0" max="10"></label>
 						<label>Image URL: <input id="artistImageUrl" type="text" name="imageUrl" /></label>
 						<button>Add Artist</button>
 					</article>
-					<h3>Add an album:</h3>
 					<article class="addAlbum">
+						<h3>Add an album:</h3>
 						<label>Album Title: <input id="albumTitle" type="text" name="title" /></label>
 						<label>Rating: <input id="albumRating" type="number" name="rating" min="0" max="10"></label>
 						<label>Record Label: <input id="albumLabel" type="text" name="recordLabel"></label>
@@ -101,8 +102,8 @@ const Add = (function() {
 						</label>
 						<button>Add Album</button>
 					</article>
-					<h3>Add a song:</h3>
 					<article class="addSong">
+						<h3>Add a song:</h3>
 						<label>Song Title: <input id="songTitle" type="text" name="title" /></label>
 						<label>Rating: <input id="songRating" type="number" name="rating" min="0" max="10"></label>
 						<label>Duration: <input id="songDuration" type="text" name="duration"></label>
